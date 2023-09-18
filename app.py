@@ -10,9 +10,9 @@ from schemas import veiculo, VeiculoBuscaSchema, VeiculoDelSchema, VeiculoSchema
 from flask_cors import CORS
 from schemas.veiculo import UpdateVeiculoSchema
 from schemas.acessorio import AcessorioSchema
-#import sqlite3 
 
-info = Info(title="Minha API - Locação de veículos", version="1.0.0")
+
+info = Info(title="Minha API - Veículos", version="1.0.0")
 app = OpenAPI(__name__, info=info)
 CORS(app)
 
@@ -40,6 +40,8 @@ def add_veiculo(form: VeiculoSchema):
         nome=form.nome,
         ano_fabricacao=form.ano_fabricacao,
         ano_modelo_fabricacao=form.ano_modelo_fabricacao,
+        placa=form.placa,
+        status=form.status,
         valor_diaria=form.valor_diaria)
     logger.debug(f"Adicionando veiculo de nome: '{veiculo.nome}'")
     try:
@@ -99,6 +101,8 @@ def update_veiculo(form: UpdateVeiculoSchema):
                 db_veiculo.valor_diaria = form.valor_diaria
             
             db_veiculo.nome = form.nome # só para garantir, pois estava dando erro ao gravar o nome
+            db_veiculo.placa = form.placa
+            db_veiculo.status = form.status
             
             session.add(db_veiculo)
             session.commit()

@@ -13,6 +13,8 @@ class Veiculo(Base):
     nome = Column(String(140), unique=True)
     ano_fabricacao = Column(Integer)
     ano_modelo_fabricacao = Column(Integer)
+    placa = Column(String(50), unique=True)
+    status = Column(String(50))
     valor_diaria = Column(Float)
     data_aquisicao = Column(DateTime, default=datetime.now())
 
@@ -22,7 +24,7 @@ class Veiculo(Base):
     # de reconstruir esse relacionamento.
     acessorios = relationship("Acessorio")
 
-    def __init__(self, nome:str, ano_fabricacao:int, ano_modelo_fabricacao:int, valor_diaria:float,
+    def __init__(self, nome:str, ano_fabricacao:int, ano_modelo_fabricacao:int, valor_diaria:float, placa:str,status:str,
                  data_aquisicao:Union[DateTime, None] = None):
         """
         Cria um Veiculo
@@ -31,12 +33,15 @@ class Veiculo(Base):
             nome: nome do veiculo.
             ano_fabricacao: ano_fabricacao que se fabricou o  veiculo
             ano_modelo_fabricacao: ano_modelo_fabricacao que se fabricou o veiculo
+            placa: placa do veículo
             valor_diaria: valor_diaria esperada para locar o veiculo
             data_aquisicao: data de quando o veiculo foi adquirido
         """
         self.nome = nome
         self.ano_fabricacao = ano_fabricacao
         self.ano_modelo_fabricacao = ano_modelo_fabricacao
+        self.placa = placa
+        self.status
         self.valor_diaria = valor_diaria
 
         # se não for informada, será o data exata da inserção no banco

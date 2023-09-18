@@ -11,6 +11,8 @@ class VeiculoSchema(BaseModel):
     nome: str = "Honda New Civic"
     ano_fabricacao: Optional[int] = 2020
     ano_modelo_fabricacao: Optional[int] = 2020
+    placa:str = "Placa FDC-1530"
+    status:str = "Disponível"
     valor_diaria: float = 150.00
 
 
@@ -32,6 +34,8 @@ def apresenta_veiculos(veiculos: List[Veiculo]):
             "nome": veiculo.nome,
             "ano_fabricacao": veiculo.ano_fabricacao,
             "ano_modelo_fabricacao": veiculo.ano_modelo_fabricacao,
+            "placa": veiculo.placa,
+            "status": veiculo.status,
             "valor_diaria": veiculo.valor_diaria,
             "total_acessorios": len(veiculo.acessorios),
             "acessorios": [{"nome": c.nome} for c in veiculo.acessorios]            
@@ -54,6 +58,8 @@ class VeiculoViewSchema(BaseModel):
     ano_fabricacao: Optional[int] = 2020
     ano_modelo_fabricacao: Optional[int] = 2020
     valor_diaria: float = 150.00
+    placa:str = "Placa FDC-1530"
+    status:str = "Disponível"
     total_acessorios: int = 1
     acessorios:List[AcessorioSchema]
 
@@ -66,6 +72,8 @@ class UpdateVeiculoSchema(BaseModel):
     nome: str = "Honda New Civic"
     ano_fabricacao: Optional[int] = 2020
     ano_modelo_fabricacao: Optional[int] = 2020
+    placa:str = "Placa FDC-1530"
+    status:str = "Disponível"
     valor_diaria: Optional[float] = 150.00
 
     
@@ -85,6 +93,8 @@ def apresenta_veiculo(veiculo: Veiculo):
         "nome": veiculo.nome,
         "ano_fabricacao": veiculo.ano_fabricacao,
         "ano_modelo_fabricacao": veiculo.ano_modelo_fabricacao,
+        "placa": veiculo.placa,
+        "status": veiculo.status,
         "valor_diaria": veiculo.valor_diaria,
         "total_acessorios": len(veiculo.acessorios),
         "acessorios": [{"nome": c.nome} for c in veiculo.acessorios]
