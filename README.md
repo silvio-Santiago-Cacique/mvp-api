@@ -48,7 +48,7 @@ Dentro do diretorio raiz da aplicação, executar:
 docker build --pull --rm -f "Dockerfile" -t mvpveiculos:latest . #para gerar a imagem mvp_frontend
 
 docker run --name mvpveiculos -p 5001:5001 -d -v .:/usr/share/nginx/html nginx #para rodar a imagem gerada
-``
+```
 
 Após os comandos é só abrir o navegador no link http://127.0.0.1:5001
 
